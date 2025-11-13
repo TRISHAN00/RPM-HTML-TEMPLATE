@@ -1,0 +1,112 @@
+@use "../../utils" as *;
+
+/*----------------------------------------*/
+/*  Header & Navigation
+/*----------------------------------------*/
+header {
+  background-color: #fff;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+
+  .header-logo img {
+    max-height: 55px;
+  }
+
+  /* Hamburger Menu */
+  .ham-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #000;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #e41313;
+    }
+
+    @media (max-width: 991px) {
+      display: block;
+    }
+  }
+
+  /* Desktop Menu */
+  nav.desktop-menu {
+    ul {
+      display: flex;
+      gap: 45px;
+      margin: 0;
+      padding: 0;
+
+      @media (max-width: 991px) {
+        display: none;
+      }
+
+      li {
+        list-style: none;
+        position: relative;
+
+        a {
+          color: rgba(0, 0, 0, 0.6);
+          font-size: 14px;
+          font-weight: 400;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: color 0.3s ease;
+
+          &.active,
+          &:hover {
+            color: #e41313;
+          }
+
+          img {
+            width: 10px;
+          }
+        }
+
+        /* Desktop Submenu */
+        ul.submenu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: #333;
+          min-width: 250px;
+          display: flex;
+          flex-direction: column;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(10px);
+          transition: all 0.3s ease;
+          z-index: 999;
+          gap: unset;
+
+          li {
+            a {
+              color: #fff;
+              padding: 15px 20px;
+              display: block;
+              transition: background 0.3s ease;
+            }
+
+            &:hover {
+              background: #029348;
+            }
+          }
+        }
+
+        &:hover > ul.submenu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
