@@ -75,7 +75,7 @@
 /*----------------------------------------*/
 /*  1.1 Theme Default
 /*----------------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lexend:wght@100..900&display=swap");
 :root {
   --green-color: #029348;
   --red-color: #d12b38;
@@ -4669,8 +4669,24 @@ img {
 }
 
 /*----------------------------------------*/
-/*  2.4 Button
+/* Button
 /*----------------------------------------*/
+.rpm-btn {
+  font-family: "Inter", sans-serif;
+  background-color: #029348;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 21px;
+  transition: 0.3s ease-in-out;
+}
+.rpm-btn:hover {
+  background-color: #ffffff;
+  color: #029348;
+}
+
 /*----------------------------------------*/
 /*  2.2 Back to Top
 /*----------------------------------------*/
@@ -4898,8 +4914,165 @@ img {
   }
 }
 /*----------------------------------------*/
-/*  5.1 Footer Style 1
+/* Footer Styles
 /*----------------------------------------*/
+.footer {
+  padding: 32px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+  /*----------------------------------------*/
+  /* Button
+  /*----------------------------------------*/
+  /*----------------------------------------*/
+  /* Responsive Breakpoints
+  /*----------------------------------------*/
+}
+.footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.footer__section {
+  flex: 1;
+  min-width: 160px;
+}
+.footer__section.footer__contact img.footer__logo {
+  display: block;
+  margin-bottom: 16px;
+  max-width: 120px;
+}
+.footer__section .footer__title {
+  color: #8f8e8a;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 22.4px;
+  margin-bottom: 16px;
+}
+.footer__section .footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer__section .footer__list li {
+  margin-bottom: 8px;
+}
+.footer__section .footer__list li a {
+  color: #cac9c4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.4px;
+  text-decoration: none;
+}
+.footer__section .footer__list li a:hover {
+  color: #ffffff;
+}
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.footer__bottom__copyright span,
+.footer__bottom__copyright a, .footer__bottom__privacy span,
+.footer__bottom__privacy a {
+  color: #8f8e8a;
+  font-size: 12px;
+  line-height: 23px;
+  font-weight: 400;
+}
+.footer__bottom__social-icons ul {
+  display: flex;
+  background-color: #272725;
+  border-radius: 12px;
+  padding: 12px 20px;
+}
+.footer__bottom__social-icons ul li {
+  list-style: none;
+}
+.footer__bottom__social-icons ul li:not(:last-child) {
+  margin-right: 16px;
+}
+.footer__bottom__social-icons ul li:last-child {
+  padding-left: 16px;
+  border-left: 2px solid white;
+}
+.footer__bottom__social-icons ul li a {
+  font-size: 20px;
+  color: #fff;
+}
+@media (max-width: 480px) {
+  .footer__bottom__social-icons ul li a {
+    font-size: 18px;
+  }
+}
+.footer .rpm-btn {
+  font-family: "Inter", sans-serif;
+  background-color: #029348;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 21px;
+  transition: 0.3s ease-in-out;
+  display: inline-block;
+}
+.footer .rpm-btn:hover {
+  background-color: #ffffff;
+  color: #029348;
+}
+@media (max-width: 1024px) {
+  .footer {
+    padding: 24px;
+  }
+  .footer__top {
+    gap: 16px;
+  }
+  .footer__section {
+    min-width: 140px;
+  }
+}
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px;
+  }
+  .footer__top {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .footer__bottom__social-icons ul {
+    padding: 8px 16px;
+  }
+  .footer .rpm-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .footer {
+    padding: 16px;
+  }
+  .footer__title {
+    font-size: 9px;
+  }
+  .footer__list li a {
+    font-size: 13px;
+  }
+  .footer__bottom__social-icons ul li a {
+    font-size: 16px;
+  }
+}
+
 /*----------------------------------------*/
 /*  Header & Navigation
 /*----------------------------------------*/
