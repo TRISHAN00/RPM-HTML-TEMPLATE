@@ -2,4 +2,17 @@
   --green-color: #029348;
   --red-color: #d12b38;
   --dark-color: #4d4d4d;
+  --yellow-color: #ffd38a;
+}
+
+.green-text {
+  color: var(--green-color);
+}
+
+.red-text {
+  color: var(--red-color);
+}
+
+.yellow-text {
+  color: var(--yellow-color);
 }

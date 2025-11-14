@@ -1,0 +1,46 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/* lab
+/*----------------------------------------*/
+
+.lab-section {
+  overflow: hidden;
+  background-color: #fff;
+
+  &__wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; // allow wrapping on smaller screens
+    gap: 100px; // desktop gap
+    padding: 16px 0;
+
+    /* Tablet (768px - 991px) */
+    @media (min-width: 768px) and (max-width: 991px) {
+      gap: 40px;
+    }
+
+    /* Mobile (up to 767px) */
+    @media (max-width: 767px) {
+      gap: 25px;
+      padding: 20px 0;
+    }
+
+    &__item {
+      height: 64px;
+      aspect-ratio: 1/1;
+      object-fit: contain;
+
+      /* Tablet */
+      @media (min-width: 768px) and (max-width: 991px) {
+        height: 56px;
+      }
+
+      /* Mobile */
+      @media (max-width: 767px) {
+        height: 32px;
+      }
+    }
+  }
+}

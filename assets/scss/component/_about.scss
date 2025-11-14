@@ -1,1 +1,143 @@
 @use "../utils" as *;
+
+.about-area {
+  padding: 75px 0;
+
+  /* Tablet */
+  @media (max-width: 991px) {
+    padding: 60px 0;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    padding: 45px 0;
+  }
+
+  /* ------------------------------------
+      LEFT COLUMN (Image + Shape)
+  ------------------------------------- */
+  &__main {
+    position: relative;
+    margin-bottom: 30px;
+
+    /* center on mobile */
+    @media (max-width: 767px) {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    &__shape {
+      position: absolute;
+      bottom: -20px;
+      right: -40px;
+      width: 120px;
+      pointer-events: none;
+
+      /* Tablet reposition */
+      @media (max-width: 991px) {
+        bottom: -10px;
+        right: -20px;
+        width: 100px;
+      }
+
+      /* Mobile reposition */
+      @media (max-width: 767px) {
+        position: absolute;
+        right: 50%;
+        transform: translateX(60%);
+        bottom: -20px;
+        width: 80px;
+      }
+    }
+  }
+
+  /* ------------------------------------
+      IMAGE WRAPPER
+  ------------------------------------- */
+  &__img-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Mobile */
+    @media (max-width: 767px) {
+      border-radius: 14px;
+    }
+  }
+
+  /* ------------------------------------
+      RIGHT COLUMN (Content)
+  ------------------------------------- */
+  &__content {
+    padding-left: 40px;
+    padding-right: 100px;
+
+    /* Tablet adjustments */
+    @media (max-width: 991px) {
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-top: 20px;
+    }
+
+    /* Mobile center layout */
+    @media (max-width: 767px) {
+      padding: 0;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    h2 {
+      font-size: 40px;
+      line-height: 56px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #4d4d4d;
+
+      /* Tablet */
+      @media (max-width: 991px) {
+        font-size: 32px;
+        line-height: 46px;
+      }
+
+      /* Mobile */
+      @media (max-width: 767px) {
+        font-size: 28px;
+        line-height: 40px;
+      }
+
+      /* Small Mobile */
+      @media (max-width: 480px) {
+        font-size: 24px;
+        line-height: 34px;
+      }
+    }
+
+    p {
+      color: #4d4d4d;
+      font-size: 16px;
+      line-height: 29px;
+      margin-bottom: 32px;
+
+      @media (max-width: 767px) {
+        font-size: 15px;
+        line-height: 26px;
+      }
+    }
+
+    a.rpm-btnBg {
+      display: inline-block;
+
+      /* Mobile button centering */
+      @media (max-width: 767px) {
+        margin: 0 auto;
+      }
+    }
+  }
+}

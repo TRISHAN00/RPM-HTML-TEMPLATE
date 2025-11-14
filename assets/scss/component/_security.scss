@@ -1,1 +1,37 @@
 @use "../utils" as *;
+
+.security-area {
+  padding: 34px 0;
+  background-color: #f5f5f7;
+
+  .subtitle {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 50px;
+    text-align: center;
+    padding: 0 20px;
+    width: 950px;
+    margin: auto;
+
+    /* Tablet: 768px - 991px */
+    @media (min-width: 768px) and (max-width: 991px) {
+      width: unset;
+      font-size: 30px;
+      line-height: 42px;
+    }
+
+    /* Large mobile: 480px - 767px */
+    @media (max-width: 767px) {
+      width: unset;
+      font-size: 26px;
+      line-height: 36px;
+    }
+
+    /* Small mobile: 320px - 480px */
+    @media (max-width: 480px) {
+      width: unset;
+      font-size: 22px;
+      line-height: 32px;
+    }
+  }
+}
