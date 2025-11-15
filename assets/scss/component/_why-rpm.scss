@@ -1,0 +1,104 @@
+@use "../utils" as *;
+
+.why-rpm-area {
+  padding: 60px 0;
+  overflow: hidden;
+
+  .section-title-wrap {
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    h1 {
+      position: relative;
+      padding-bottom: 24px;
+
+      &::before {
+        position: absolute;
+        content: "";
+        background-color: orange;
+        bottom: 0;
+        height: 2px;
+        width: 50px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .why-single-rpm {
+    text-align: center;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px); // slight lift
+    }
+
+    &__icon {
+      height: 100px;
+      width: 100px;
+      margin: 0 auto 15px;
+      overflow: hidden;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f8f8;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+
+      img {
+        max-width: 70%;
+        height: auto;
+        transition: transform 0.3s ease;
+      }
+
+      // Hover effect: background change + image zoom
+      &:hover {
+        background-color: #029348; // background changes on hover
+      }
+
+      &:hover img {
+        transform: scale(1.15); // zoom the image slightly
+      }
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s ease;
+
+      // Change text color when hovering parent
+      .why-single-rpm:hover & {
+        color: #029348;
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 991px) {
+    .why-single-rpm {
+      &__icon {
+        height: 80px;
+        width: 80px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @media (max-width: 575px) {
+    .why-single-rpm {
+      &__icon {
+        height: 70px;
+        width: 70px;
+      }
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+}
