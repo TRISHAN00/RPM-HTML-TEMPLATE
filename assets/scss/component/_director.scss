@@ -1,0 +1,38 @@
+@use "../utils" as *;
+
+.managing-area {
+  padding: 80px 0;
+
+  /* small mobile :320px. */
+  @media (max-width: 767px) {
+    padding: 40px 0;
+  }
+  .section-title-wrap {
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    h1 {
+      position: relative;
+      padding-bottom: 24px;
+
+      &::before {
+        position: absolute;
+        content: "";
+        background-color: #ffba5a;
+        bottom: 0;
+        height: 2px;
+        width: 50px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  p {
+    color: #666;
+    font-size: 14px;
+    line-height: 27px;
+    font-weight: 400;
+  }
+}
