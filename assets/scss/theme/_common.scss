@@ -4,6 +4,38 @@
 /*  1.2 Common Classes
 /*----------------------------------------*/
 
+.wow {
+  visibility: hidden;
+}
+
+.section-title-wrap {
+  margin-bottom: 40px;
+
+  @media (max-width: 767px) {
+    p {
+      font-size: 14px;
+    }
+
+    margin-bottom: 15px;
+  }
+}
+
+.section-title {
+  color: var(--tp-font-body, #333333);
+  font-size: 40px;
+  text-align: center;
+
+  @media (max-width: 767px) {
+    font-size: 22px;
+  }
+}
+
+.section-subtitle {
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+}
+
 .w-img {
   & img {
     width: 100%;

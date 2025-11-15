@@ -1,1 +1,18 @@
 @use "../utils" as *;
+
+.brand-slider-area {
+  padding: 40px 0;
+  background: linear-gradient(to right, #ffffff, #fdf4e7);
+}
+
+.brandSlider img {
+  width: 120px;
+  height: auto;
+  transition: 0.3s;
+  opacity: 0.9;
+}
+
+.brandSlider img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}

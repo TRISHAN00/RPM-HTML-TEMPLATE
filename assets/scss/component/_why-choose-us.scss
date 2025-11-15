@@ -1,1 +1,126 @@
 @use "../utils" as *;
+
+.why-choose-area {
+  background-image: url("/assets/img/dynamic/Why-Choose/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 140px 0 80px;
+  position: relative;
+  /* Normal desktop :992px. */
+  @media (min-width: 992px) and (max-width: 1200px) {
+    padding: 60px 0 40px;
+  }
+
+  /* small mobile :320px. */
+  @media (max-width: 767px) {
+    padding: 60px 0 40px;
+  }
+
+  &__left {
+    h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      line-height: 1.7;
+      @media (max-width: 767px) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__right {
+    position: relative;
+    padding: 30px 0;
+
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      position: relative;
+      z-index: 2;
+    }
+
+    .single-counter {
+      background: linear-gradient(
+        135deg,
+        rgba(211, 59, 0, 0.5) 0%,
+        /* Orange-red */ rgba(255, 207, 0, 0.5) 50%,
+        /* Bright Yellow */ rgba(0, 166, 62, 0.5) 100% /* Green */
+      );
+      border: 2px solid white;
+      margin-right: -1px;
+      margin-top: -1px;
+
+      padding: 70px 30px;
+      text-align: center;
+      color: #333333;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+      img {
+        width: 60px;
+        margin-bottom: 10px;
+      }
+
+      h6 {
+        font-size: 15px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      h5 {
+        font-size: 28px;
+        font-weight: 700;
+      }
+    }
+
+    /* GRADIENT SHAPE BEHIND COUNTERS */
+    .gradient-shape {
+      position: absolute;
+      top: 0;
+      right: -40px;
+      width: 380px;
+      height: 380px;
+      background-image: url("/assets/img/dynamic/Why-Choose/shape-gradient.png"); // use your gradient image
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.9;
+      z-index: 1;
+      filter: blur(2px);
+    }
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .why-choose-area {
+    padding: 60px 0 60px;
+
+    &__right {
+      .gradient-shape {
+        right: 0;
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .why-choose-area__right .counter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .why-choose-area__right .gradient-shape {
+    width: 220px;
+    height: 220px;
+    top: 20px;
+  }
+
+  .why-choose-area__left h2 {
+    font-size: 28px;
+  }
+}

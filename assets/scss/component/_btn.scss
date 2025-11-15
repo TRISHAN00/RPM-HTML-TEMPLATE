@@ -18,6 +18,30 @@
   }
 }
 
+// Transparent Button
+.transparent-btn {
+  font-family: "Inter", sans-serif;
+  border: 1px solid #646262;
+  padding: 8px 24px;
+  background-color: transparent;
+  border-radius: 8px;
+  color: #646262;
+  font-weight: bold;
+  line-height: 24px;
+  transition: 0.3s ease-in-out;
+  display: inline-block;
+
+  /* small mobile :320px. */
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+
+  &:hover {
+    background-color: #646262;
+    color: #fff;
+  }
+}
+
 /* Primary button */
 .rpm-btn {
   padding: 8px 16px;

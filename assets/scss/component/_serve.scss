@@ -1,1 +1,35 @@
 @use "../utils" as *;
+
+.serve-area {
+  padding-bottom: 50px;
+  padding-top: 60px;
+
+  .serve-slider-wrap {
+    margin-left: var(--container-offset);
+  }
+
+  .serve-card {
+    &__img {
+      height: 200px;
+      overflow: hidden;
+
+      /* small mobile :320px. */
+      @media (max-width: 767px) {
+        height: 100px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    h5 {
+      color: #474747;
+      font-size: 16px;
+      line-height: 16px;
+      font-weight: 400;
+      text-align: center;
+      margin-top: 15px;
+    }
+  }
+}

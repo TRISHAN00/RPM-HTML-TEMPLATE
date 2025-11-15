@@ -86,15 +86,98 @@
     });
   }
 
+
+
   // banner slider
   var swiper = new Swiper(".banner-active", {
     slidesPerView: 1,
     spaceBetween: 0,
+    loop: true, // infinite loop
+    speed: 1200, // smooth transition speed (ms)
+    autoplay: {
+      delay: 3000, // slides change every 3 seconds
+      disableOnInteraction: false,
+    },
     keyboard: { enabled: true },
     pagination: { el: ".swiper-pagination", clickable: true },
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      nextEl: ".banner-button-next",
+      prevEl: ".banner-button-prev",
+    },
+  });
+
+    swiper.on("slideChange", function () {
+    document.querySelectorAll(".swiper-slide-active .wow").forEach((el) => {
+      el.classList.remove("animate__animated");
+      void el.offsetWidth; // reset
+      el.classList.add("animate__animated");
+    });
+  });
+
+  // Certification Slider
+  var swiper = new Swiper(".brandSlider", {
+    slidesPerView: 5,
+    spaceBetween: 40,
+    loop: true,
+    speed: 3000, // slow + smooth movement
+    autoplay: {
+      delay: 0,
+      pauseOnMouseEnter: true,
+    },
+    grabCursor: true,
+
+    // Smooth linear motion
+    freeMode: true,
+    freeModeMomentum: false,
+
+    breakpoints: {
+      1200: { slidesPerView: 5 },
+      991: { slidesPerView: 4 },
+      767: { slidesPerView: 3 },
+      575: { slidesPerView: 2 },
+      0: { slidesPerView: 2 },
+    },
+  });
+
+  // Partners Slider
+  var partnerSlider = new Swiper(".partnerSlider", {
+    loop: true,
+    speed: 3000, // slow + smooth movement
+    autoplay: {
+      delay: 2000, // 1 second
+      pauseOnMouseEnter: true,
+    },
+    slidesPerView: 5,
+    spaceBetween: 30,
+    centeredSlides: false,
+    grabCursor: true, // enables smooth swipe feeling
+    breakpoints: {
+      1200: { slidesPerView: 5 },
+      992: { slidesPerView: 4 },
+      768: { slidesPerView: 3 },
+      480: { slidesPerView: 2 },
+      320: { slidesPerView: 2 },
+    },
+  });
+
+  // Serve Slider
+  var partnerSlider = new Swiper(".serveSlider", {
+    loop: true,
+    speed: 3000, // slow + smooth movement
+    autoplay: {
+      delay: 1000, // 1 second
+      pauseOnMouseEnter: true,
+    },
+    slidesPerView: 5,
+    spaceBetween: 30,
+    centeredSlides: false,
+    grabCursor: true, // enables smooth swipe feeling
+    breakpoints: {
+      1200: { slidesPerView: 5 },
+      992: { slidesPerView: 4 },
+      768: { slidesPerView: 3 },
+      480: { slidesPerView: 2 },
+      320: { slidesPerView: 2 },
     },
   });
 
@@ -109,6 +192,11 @@
     });
     wow.init();
   }
+
+  $(".counter").counterUp({
+    delay: 10,
+    time: 2000,
+  });
 
   // jarallax
   if ($(".jarallax").length) {
@@ -160,4 +248,28 @@
       parentLi.classList.toggle("open");
     });
   });
+
+  // Get Bootstrap Container Offset Value
+  function getContainerOffset() {
+    const container = document.querySelector(".container");
+    const rect = container.getBoundingClientRect();
+
+    return {
+      left: rect.left,
+      right: window.innerWidth - rect.right,
+      width: rect.width,
+    };
+  }
+
+  function updateOffsetCSS() {
+    const offset = getContainerOffset();
+
+    document.documentElement.style.setProperty(
+      "--container-offset",
+      offset.left + "px"
+    );
+  }
+
+  updateOffsetCSS();
+  window.addEventListener("resize", updateOffsetCSS);
 })(jQuery);

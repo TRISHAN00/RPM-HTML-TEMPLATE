@@ -1,1 +1,32 @@
 @use "../utils" as *;
+
+.partners-area {
+  padding: 40px 0;
+
+  .partnerSlider {
+    padding: 20px 0;
+
+    .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      transition: all 0.3s ease;
+
+      img {
+        width: 100%;
+        height: auto;
+        max-width: 180px;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.8;
+        transition: 0.3s;
+
+        &:hover {
+          filter: grayscale(0%);
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

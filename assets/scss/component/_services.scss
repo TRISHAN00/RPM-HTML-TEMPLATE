@@ -1,1 +1,77 @@
 @use "../utils" as *;
+
+.services-area {
+  background-color: #ffffff;
+  padding: 60px 0;
+
+  .single-service__wrap {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    margin-bottom: 30px;
+
+    &:hover {
+      background-color: #e0f7fa; // hover background color
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 20px;
+    }
+
+    h5 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333333;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #666666;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 991px) {
+      flex: 1 1 calc(45% - 20px);
+      padding: 25px 15px;
+
+      h5 {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      flex: 1 1 100%;
+      padding: 20px 15px;
+
+      h5 {
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+
+      img {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+}

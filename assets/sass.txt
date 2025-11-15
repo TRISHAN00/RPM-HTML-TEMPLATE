@@ -1,1 +1,1 @@
-sass --watch "E:\trishan\Projects\RPM\exdos-html-package\exdos\assets\scss\main.scss:E:\trishan\Projects\RPM\exdos-html-package\exdos\assets\css\style.css"
+sass --watch "E:\trishan\Projects\RPM\assets\scss\main.scss:E:\trishan\Projects\RPM\assets\css\style.css"
