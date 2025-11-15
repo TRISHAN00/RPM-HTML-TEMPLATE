@@ -218,9 +218,8 @@ textarea {
   width: 100%;
   line-height: 56px;
   font-size: 15px;
-  color: var(--tp-common-black);
-  border: 0;
-  border-bottom: 1px solid #57595c;
+  color: #333;
+  border-bottom: 1px solid #333;
   text-transform: uppercase;
   font-weight: 500;
 
@@ -229,7 +228,7 @@ textarea {
   }
 
   &:focus {
-    border-color: var(--tp-common-black);
+    border-color: #333;
     &::placeholder {
       opacity: 0;
     }

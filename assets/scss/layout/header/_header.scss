@@ -4,6 +4,9 @@
 /*  Header & Navigation
 /*----------------------------------------*/
 header {
+  position: fixed !important;
+  left: 0;
+  right: 0;
   background-color: #fff;
   height: 80px;
   display: flex;

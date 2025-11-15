@@ -1,0 +1,95 @@
+@use "../utils" as *;
+
+.product-tab-section {
+  background: #f2f4f7;
+  padding: 60px 30px;
+
+  .product-sidebar {
+    background: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+
+    .nav-link {
+      text-align: left;
+      padding: 14px 20px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      font-weight: 500;
+      background: #f7f8fa;
+      color: #333;
+      border: 1px solid #e5e7eb;
+      transition: 0.25s ease;
+
+      &:hover {
+        background: #eef3ff;
+        border-color: #d7dfff;
+        color: #2d5be3;
+      }
+
+      &.active {
+        background: #666;
+        border-color: #ccc;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(45, 91, 227, 0.25);
+      }
+    }
+  }
+
+  .product-content {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    min-height: 350px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+    @media (min-width: 768px) and (max-width: 991px) {
+      margin-top: 30px;
+    }
+
+    /* small mobile :320px. */
+    @media (max-width: 767px) {
+      margin-top: 30px;
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #4b5563;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 0;
+      margin: 0;
+
+      li {
+        list-style: none;
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+        color: #374151;
+        font-size: 15px;
+
+        &::before {
+          content: "•";
+          position: absolute;
+          left: 0;
+          top: 0;
+          color: #2d5be3;
+          font-size: 18px;
+        }
+
+        strong {
+          color: #111827;
+        }
+      }
+    }
+  }
+}
