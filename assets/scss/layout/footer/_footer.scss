@@ -1,20 +1,30 @@
-@use "../../utils" as *;
-
-/*----------------------------------------*/
-/* Footer Styles
-/*----------------------------------------*/
 .footer {
-  padding: 60px 32px;
+  position: relative;
+  padding: 45px 24px; // reduced height
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   color: #cac9c4;
 
+  // Overlay
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9); // adjust darkness here
+    z-index: 0;
+  }
+
+  > .container {
+    position: relative;
+    z-index: 1;
+  }
+
   &__top {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 32px;
-    margin-bottom: 48px;
+    gap: 28px;
+    margin-bottom: 36px; // reduced
   }
 
   &__section {
@@ -23,17 +33,14 @@
       letter-spacing: 1px;
       font-weight: 600;
       color: #8f8e8a;
-      margin-bottom: 18px;
+      margin-bottom: 14px; // reduced
       text-transform: uppercase;
     }
 
     .footer__list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-
       li {
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+        list-style: inside;
 
         a {
           color: #e2e1de;
@@ -48,23 +55,22 @@
     }
 
     &.footer__contact .footer__logo {
-      width: 130px;
-      margin-bottom: 18px;
+      width: 120px;
+      margin-bottom: 16px;
     }
   }
 
   .footer__cta {
     text-align: end;
-
-    .footer__cta-text {
-      margin-bottom: 10px;
-      color: #e2e1de;
+    /* Tablet desktop :768px. */
+    @media (min-width: 768px) and (max-width: 991px) {
+      text-align: start;
     }
   }
 
   .rpm-btn {
     background-color: #029348;
-    padding: 10px 24px;
+    padding: 9px 22px;
     border-radius: 10px;
     color: #ffffff;
     font-size: 14px;
@@ -80,30 +86,23 @@
   &__divider {
     width: 100%;
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
-    margin-bottom: 28px;
+    background: rgba(255, 255, 255, 0.15);
+    margin-bottom: 22px;
   }
 
   &__bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
   }
 
   .footer__social {
     display: flex;
-    list-style: none;
     gap: 18px;
 
-    a {
-      font-size: 20px;
-      color: #ffffff;
-      transition: 0.3s;
-
-      &:hover {
-        opacity: 0.7;
-      }
+    li {
+      list-style: none;
     }
   }
 
@@ -116,8 +115,14 @@
     }
   }
 
+  /* ───── Responsive ───── */
   @media (max-width: 768px) {
-    padding: 40px 20px;
+    padding: 35px 18px; // smaller on phones & tablets
+
+    &__top {
+      gap: 24px;
+      margin-bottom: 26px;
+    }
 
     .footer__cta {
       text-align: start;
@@ -126,6 +131,7 @@
     &__bottom {
       flex-direction: column;
       align-items: flex-start;
+      gap: 10px;
     }
   }
 }

@@ -29,6 +29,15 @@ header {
     cursor: pointer;
     transition: color 0.3s ease;
 
+    i {
+      &::before {
+        color: var(--red-color);
+      }
+      &::after {
+        color: var(--green-color);
+      }
+    }
+
     &:hover {
       color: #e41313;
     }
