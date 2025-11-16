@@ -98,7 +98,13 @@
         display: block;
         width: 60px;
         height: 3px;
-        background-color: #e53935;
+        background: linear-gradient(
+          135deg,
+          #d33b00 0%,
+          #ffcf00 50%,
+          #00a63e 100%
+        );
+
         margin-top: 8px;
       }
     }

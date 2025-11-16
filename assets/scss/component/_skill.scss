@@ -12,7 +12,13 @@
       &::before {
         position: absolute;
         content: "";
-        background-color: #ffba5a;
+        background: linear-gradient(
+          135deg,
+          #d33b00 0%,
+          #ffcf00 50%,
+          #00a63e 100%
+        );
+
         bottom: 0;
         height: 2px;
         width: 50px;
