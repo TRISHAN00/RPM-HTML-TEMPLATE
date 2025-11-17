@@ -17,6 +17,7 @@
   justify-content: space-between;
   transition: right 0.4s ease-in-out;
   box-shadow: -2px 0 15px rgba(0, 0, 0, 0.4);
+  margin-top: 0;
 
   &.active {
     right: 0;
