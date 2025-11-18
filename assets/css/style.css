@@ -6891,7 +6891,7 @@ img {
   left: 0;
   top: 0;
   font-weight: 900;
-  color: #ff8e26;
+  color: var(--green-color);
 }
 .service-detail-area .custom-top-80 {
   top: 80px;
@@ -6921,7 +6921,7 @@ img {
   color: #ff8e26;
 }
 .service-detail-area .contact-card {
-  background: #ff8e26;
+  background: var(--green-color);
   color: #fff;
   padding: 30px;
   border-radius: 6px;
@@ -7077,19 +7077,20 @@ img {
 /*----------------------------------------*/
 /*  Header & Navigation
 /*----------------------------------------*/
+/* =========================================================
+   HEADER MAIN
+========================================================= */
 header {
   position: fixed !important;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background: #fff;
   height: 80px;
   display: flex;
   align-items: center;
-  position: relative;
   z-index: 1000;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-  /* Hamburger Menu */
-  /* Desktop Menu */
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+  /* Hamburger Button */
 }
 header .header-logo img {
   max-height: 55px;
@@ -7097,195 +7098,215 @@ header .header-logo img {
 header .ham-menu {
   display: none;
   background: none;
-  border: none;
+  border: 0;
   font-size: 28px;
-  color: #000;
   cursor: pointer;
-  transition: color 0.3s ease;
-}
-header .ham-menu i::before {
-  color: var(--red-color);
-}
-header .ham-menu i::after {
-  color: var(--green-color);
-}
-header .ham-menu:hover {
-  color: #e41313;
 }
 @media (max-width: 991px) {
   header .ham-menu {
     display: block;
   }
 }
-header nav.desktop-menu ul {
-  display: flex;
-  gap: 45px;
-  margin: 0;
-  padding: 0;
+
+/* =========================================================
+   DESKTOP MENU - SUPPORTS UNLIMITED NESTING
+========================================================= */
+.desktop-menu {
+  /* Mark items with submenu */
+  /* Nested submenu items get right arrow */
 }
 @media (max-width: 991px) {
-  header nav.desktop-menu ul {
+  .desktop-menu {
     display: none;
   }
 }
-header nav.desktop-menu ul li {
-  list-style: none;
-  position: relative;
-  /* Desktop Submenu */
-}
-header nav.desktop-menu ul li a {
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 14px;
-  font-weight: 400;
-  text-decoration: none;
+.desktop-menu ul {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.3s ease;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-header nav.desktop-menu ul li a.active, header nav.desktop-menu ul li a:hover {
+.desktop-menu li {
+  position: relative;
+  /* ALL submenu levels */
+  /* Show first-level submenu on hover */
+}
+.desktop-menu li a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  padding: 10px 0;
+  display: block;
+  transition: 0.3s;
+}
+.desktop-menu li a:hover, .desktop-menu li a.active {
   color: #e41313;
 }
-header nav.desktop-menu ul li a img {
-  width: 10px;
-}
-header nav.desktop-menu ul li ul.submenu {
+.desktop-menu li .submenu {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #333;
-  min-width: 250px;
-  display: flex;
-  flex-direction: column;
+  min-width: 220px;
+  background: #222;
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
+  padding: 0;
   z-index: 999;
-  gap: unset;
-}
-header nav.desktop-menu ul li ul.submenu li a {
-  color: #fff;
-  padding: 15px 20px;
+  list-style: none;
   display: block;
-  transition: background 0.3s ease;
+  gap: 0;
 }
-header nav.desktop-menu ul li ul.submenu li:hover {
+.desktop-menu li .submenu li {
+  display: block;
+  /* Nested submenus appear to the right */
+  /* Show nested submenu on hover */
+}
+.desktop-menu li .submenu li a {
+  padding: 12px 15px;
+  color: #fff;
+  font-size: 14px;
+}
+.desktop-menu li .submenu li:hover > a {
   background: #029348;
+  color: #fff;
 }
-header nav.desktop-menu ul li:hover > ul.submenu {
+.desktop-menu li .submenu li .submenu {
+  top: 0;
+  left: 100%;
+  transform: translateX(10px);
+}
+.desktop-menu li .submenu li:hover > .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+.desktop-menu li:hover > .submenu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
+.desktop-menu .has-submenu > a::after {
+  content: "\f107"; /* FontAwesome down arrow */
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  margin-left: 6px;
+  font-size: 11px;
+}
+.desktop-menu .submenu .has-submenu > a::after {
+  content: "\f105"; /* Right arrow */
+  float: right;
+  margin-left: auto;
+  padding-left: 10px;
+}
 
-/*----------------------------------------*/
-/*  Mobile Offcanvas Menu
-/*----------------------------------------*/
+/* =========================================================
+   MOBILE OFFCANVAS MENU - SUPPORTS UNLIMITED NESTING
+========================================================= */
 .offcanvas-menu {
   position: fixed;
   top: 0;
   right: -100%;
   width: 280px;
   height: 100vh;
-  background-color: #111;
+  background: #111;
   padding: 60px 30px 100px;
+  transition: right 0.4s;
   z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: right 0.4s ease-in-out;
-  box-shadow: -2px 0 15px rgba(0, 0, 0, 0.4);
-  margin-top: 0;
+  overflow-y: auto;
 }
 .offcanvas-menu.active {
   right: 0;
 }
 .offcanvas-menu .mobile-header {
-  color: #fff;
   text-align: right;
+  color: #fff;
   font-size: 28px;
   cursor: pointer;
+}
+.offcanvas-menu .mobile-header i {
+  transition: 0.3s;
 }
 .offcanvas-menu .mobile-header i:hover {
   transform: rotate(90deg);
   color: #ff4d4d;
-  transition: 0.3s;
 }
 .offcanvas-menu .mobile-menu {
-  flex: 1;
   margin-top: 40px;
 }
 .offcanvas-menu .mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0;
 }
-.offcanvas-menu .mobile-menu ul li {
-  list-style: none;
-  /* Mobile Submenu */
+.offcanvas-menu .mobile-menu li {
+  position: relative;
+  /* ALL level submenus */
+  /* OPEN STATE - applies to all levels */
+  /* Submenu indicators */
 }
-.offcanvas-menu .mobile-menu ul li a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.offcanvas-menu .mobile-menu li > a {
   color: #fff;
   font-size: 16px;
-  text-decoration: none;
   padding: 12px 0;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: color 0.3s, padding-left 0.3s;
+  transition: 0.3s;
 }
-.offcanvas-menu .mobile-menu ul li a:hover {
+.offcanvas-menu .mobile-menu li > a:hover {
   color: #029348;
   padding-left: 8px;
 }
-.offcanvas-menu .mobile-menu ul li a i {
-  font-size: 12px;
-}
-.offcanvas-menu .mobile-menu ul li ul.submenu {
+.offcanvas-menu .mobile-menu li .submenu {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  margin-left: 15px;
+  transition: max-height 0.4s ease;
+  /* Nested submenus have more indent */
+}
+.offcanvas-menu .mobile-menu li .submenu li a {
+  font-size: 14px;
+  padding: 10px 0;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.offcanvas-menu .mobile-menu li .submenu .submenu {
   margin-left: 15px;
 }
-.offcanvas-menu .mobile-menu ul li ul.submenu li a {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-  padding: 8px 0;
+.offcanvas-menu .mobile-menu li .submenu .submenu li a {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
 }
-.offcanvas-menu .mobile-menu ul li.open > ul.submenu {
-  max-height: 300px;
+.offcanvas-menu .mobile-menu li.open > .submenu {
+  max-height: 2000px;
 }
-.offcanvas-menu .mobile-footer {
-  background-color: #029348;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.offcanvas-menu .mobile-menu li.has-submenu > a::after {
+  content: "\f105"; /* Right arrow */
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  font-size: 12px;
+  transition: 0.3s;
 }
-.offcanvas-menu .mobile-footer ul {
-  display: flex;
-  gap: 20px;
-}
-.offcanvas-menu .mobile-footer ul li {
-  list-style: none;
-}
-.offcanvas-menu .mobile-footer ul li a {
-  color: #fff;
-  font-size: 16px;
-  transition: transform 0.3s, color 0.3s;
-}
-.offcanvas-menu .mobile-footer ul li a:hover {
-  color: #000;
-  transform: scale(1.1);
+.offcanvas-menu .mobile-menu li.open > a::after {
+  content: "\f107"; /* Down arrow */
+  transform: rotate(0deg);
 }
 
-/* Overlay */
+aside {
+  margin-top: 0px;
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
 .offcanvas-overlay {
   position: fixed;
   top: 0;
@@ -7296,7 +7317,7 @@ header nav.desktop-menu ul li:hover > ul.submenu {
   z-index: 9998;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s, visibility 0.4s;
+  transition: 0.4s;
 }
 .offcanvas-overlay.active {
   opacity: 1;

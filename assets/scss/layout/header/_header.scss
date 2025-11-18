@@ -3,122 +3,281 @@
 /*----------------------------------------*/
 /*  Header & Navigation
 /*----------------------------------------*/
+/* =========================================================
+   HEADER MAIN
+========================================================= */
 header {
   position: fixed !important;
   left: 0;
   right: 0;
-  background-color: #fff;
+  background: #fff;
   height: 80px;
   display: flex;
   align-items: center;
-  position: relative;
   z-index: 1000;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
 
   .header-logo img {
     max-height: 55px;
   }
 
-  /* Hamburger Menu */
+  /* Hamburger Button */
   .ham-menu {
     display: none;
     background: none;
-    border: none;
+    border: 0;
     font-size: 28px;
-    color: #000;
     cursor: pointer;
-    transition: color 0.3s ease;
-
-    i {
-      &::before {
-        color: var(--red-color);
-      }
-      &::after {
-        color: var(--green-color);
-      }
-    }
-
-    &:hover {
-      color: #e41313;
-    }
 
     @media (max-width: 991px) {
       display: block;
     }
   }
+}
 
-  /* Desktop Menu */
-  nav.desktop-menu {
-    ul {
-      display: flex;
-      gap: 45px;
-      margin: 0;
-      padding: 0;
+/* =========================================================
+   DESKTOP MENU - SUPPORTS UNLIMITED NESTING
+========================================================= */
+.desktop-menu {
+  @media (max-width: 991px) {
+    display: none;
+  }
 
-      @media (max-width: 991px) {
-        display: none;
+  ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    position: relative;
+
+    a {
+      text-decoration: none;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 14px;
+      padding: 10px 0;
+      display: block;
+      transition: 0.3s;
+
+      &:hover,
+      &.active {
+        color: #e41313;
       }
+    }
+
+    /* ALL submenu levels */
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 220px;
+      background: #222;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      padding: 0;
+      z-index: 999;
+      list-style: none;
+      display: block;
+      gap: 0;
 
       li {
-        list-style: none;
-        position: relative;
+        display: block;
 
         a {
-          color: rgba(0, 0, 0, 0.6);
+          padding: 12px 15px;
+          color: #fff;
           font-size: 14px;
-          font-weight: 400;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          transition: color 0.3s ease;
-
-          &.active,
-          &:hover {
-            color: #e41313;
-          }
-
-          img {
-            width: 10px;
-          }
         }
 
-        /* Desktop Submenu */
-        ul.submenu {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          background: #333;
-          min-width: 250px;
-          display: flex;
-          flex-direction: column;
-          opacity: 0;
-          visibility: hidden;
-          transform: translateY(10px);
-          transition: all 0.3s ease;
-          z-index: 999;
-          gap: unset;
-
-          li {
-            a {
-              color: #fff;
-              padding: 15px 20px;
-              display: block;
-              transition: background 0.3s ease;
-            }
-
-            &:hover {
-              background: #029348;
-            }
-          }
+        &:hover > a {
+          background: #029348;
+          color: #fff;
         }
 
-        &:hover > ul.submenu {
+        /* Nested submenus appear to the right */
+        .submenu {
+          top: 0;
+          left: 100%;
+          transform: translateX(10px);
+        }
+
+        /* Show nested submenu on hover */
+        &:hover > .submenu {
           opacity: 1;
           visibility: visible;
-          transform: translateY(0);
+          transform: translateX(0);
         }
       }
     }
+
+    /* Show first-level submenu on hover */
+    &:hover > .submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+  }
+
+  /* Mark items with submenu */
+  .has-submenu > a::after {
+    content: "\f107"; /* FontAwesome down arrow */
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    margin-left: 6px;
+    font-size: 11px;
+  }
+
+  /* Nested submenu items get right arrow */
+  .submenu .has-submenu > a::after {
+    content: "\f105"; /* Right arrow */
+    float: right;
+    margin-left: auto;
+    padding-left: 10px;
+  }
+}
+
+/* =========================================================
+   MOBILE OFFCANVAS MENU - SUPPORTS UNLIMITED NESTING
+========================================================= */
+.offcanvas-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 280px;
+  height: 100vh;
+  background: #111;
+  padding: 60px 30px 100px;
+  transition: right 0.4s;
+  z-index: 9999;
+  overflow-y: auto;
+
+  &.active {
+    right: 0;
+  }
+
+  .mobile-header {
+    text-align: right;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+
+    i {
+      transition: 0.3s;
+
+      &:hover {
+        transform: rotate(90deg);
+        color: #ff4d4d;
+      }
+    }
+  }
+
+  .mobile-menu {
+    margin-top: 40px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    li {
+      position: relative;
+
+      > a {
+        color: #fff;
+        font-size: 16px;
+        padding: 12px 0;
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: 0.3s;
+
+        &:hover {
+          color: #029348;
+          padding-left: 8px;
+        }
+      }
+
+      /* ALL level submenus */
+      .submenu {
+        max-height: 0;
+        overflow: hidden;
+        margin-left: 15px;
+        transition: max-height 0.4s ease;
+
+        li {
+          a {
+            font-size: 14px;
+            padding: 10px 0;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          }
+        }
+
+        /* Nested submenus have more indent */
+        .submenu {
+          margin-left: 15px;
+
+          li a {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
+      }
+
+      /* OPEN STATE - applies to all levels */
+      &.open > .submenu {
+        max-height: 2000px;
+      }
+
+      /* Submenu indicators */
+      &.has-submenu > a::after {
+        content: "\f105"; /* Right arrow */
+        font-family: "Font Awesome 5 Pro";
+        font-weight: 900;
+        font-size: 12px;
+        transition: 0.3s;
+      }
+
+      &.open > a::after {
+        content: "\f107"; /* Down arrow */
+        transform: rotate(0deg);
+      }
+    }
+  }
+}
+
+aside {
+  margin-top: 0px;
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+.offcanvas-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
   }
 }

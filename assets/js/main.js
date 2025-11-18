@@ -86,8 +86,6 @@
     });
   }
 
-
-
   // banner slider
   var swiper = new Swiper(".banner-active", {
     slidesPerView: 1,
@@ -106,7 +104,7 @@
     },
   });
 
-    swiper.on("slideChange", function () {
+  swiper.on("slideChange", function () {
     document.querySelectorAll(".swiper-slide-active .wow").forEach((el) => {
       el.classList.remove("animate__animated");
       void el.offsetWidth; // reset
@@ -205,49 +203,7 @@
     });
   }
 
-  // Menu
-  const hamMenu = document.querySelector(".ham-menu");
-  const offcanvasMenu = document.querySelector(".offcanvas-menu");
-  const closeMenu = document.querySelector(".mobile-header i");
-  const overlay = document.querySelector(".offcanvas-overlay");
-  const submenuToggles = document.querySelectorAll(
-    ".offcanvas-menu .mobile-menu li > a i"
-  );
 
-  // ✅ Open Menu
-  hamMenu.addEventListener("click", function () {
-    offcanvasMenu.classList.add("active");
-    overlay.classList.add("active");
-  });
-
-  // ✅ Close Menu
-  closeMenu.addEventListener("click", function () {
-    offcanvasMenu.classList.remove("active");
-    overlay.classList.remove("active");
-  });
-
-  // ✅ Close on Overlay Click
-  overlay.addEventListener("click", function () {
-    offcanvasMenu.classList.remove("active");
-    overlay.classList.remove("active");
-  });
-
-  // ✅ Toggle Submenu
-  submenuToggles.forEach((icon) => {
-    icon.addEventListener("click", function (e) {
-      e.preventDefault();
-      const parentLi = this.closest("li");
-
-      // Close others (accordion behavior)
-      document
-        .querySelectorAll(".offcanvas-menu .mobile-menu li.open")
-        .forEach((item) => {
-          if (item !== parentLi) item.classList.remove("open");
-        });
-
-      parentLi.classList.toggle("open");
-    });
-  });
 
   // Get Bootstrap Container Offset Value
   function getContainerOffset() {
@@ -273,3 +229,95 @@
   updateOffsetCSS();
   window.addEventListener("resize", updateOffsetCSS);
 })(jQuery);
+
+
+// =========================================================
+// MULTI-LEVEL MENU HANDLER
+// =========================================================
+
+// Menu Elements
+const hamMenu = document.querySelector(".ham-menu");
+const offcanvasMenu = document.querySelector(".offcanvas-menu");
+const closeMenu = document.querySelector(".mobile-header i");
+const overlay = document.querySelector(".offcanvas-overlay");
+
+// OPEN mobile menu
+hamMenu.addEventListener("click", () => {
+  offcanvasMenu.classList.add("active");
+  overlay.classList.add("active");
+  document.body.style.overflow = "hidden"; // Prevent body scroll
+});
+
+// CLOSE mobile menu
+closeMenu.addEventListener("click", closeOffcanvas);
+overlay.addEventListener("click", closeOffcanvas);
+
+function closeOffcanvas() {
+  offcanvasMenu.classList.remove("active");
+  overlay.classList.remove("active");
+  document.body.style.overflow = ""; // Restore body scroll
+  
+  // Close all open submenus when closing the menu
+  document.querySelectorAll(".mobile-menu li.open").forEach((item) => {
+    item.classList.remove("open");
+  });
+}
+
+// =========================================================
+// MULTI-LEVEL SUBMENU TOGGLE (Mobile)
+// Works for unlimited nesting levels
+// =========================================================
+document.querySelectorAll(".mobile-menu li.has-submenu > a").forEach((menuLink) => {
+  menuLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation(); // Prevent event bubbling
+    
+    const parentLi = this.parentElement;
+    const wasOpen = parentLi.classList.contains("open");
+    
+    // Close all sibling menus at the same level
+    const siblings = Array.from(parentLi.parentElement.children);
+    siblings.forEach((sibling) => {
+      if (sibling !== parentLi && sibling.classList.contains("has-submenu")) {
+        sibling.classList.remove("open");
+        // Also close all nested submenus inside siblings
+        sibling.querySelectorAll("li.open").forEach((nested) => {
+          nested.classList.remove("open");
+        });
+      }
+    });
+    
+    // Toggle current menu
+    if (wasOpen) {
+      parentLi.classList.remove("open");
+      // Close all nested submenus when closing parent
+      parentLi.querySelectorAll("li.open").forEach((nested) => {
+        nested.classList.remove("open");
+      });
+    } else {
+      parentLi.classList.add("open");
+    }
+  });
+});
+
+// =========================================================
+// OPTIONAL: Close menu when clicking a final link (no submenu)
+// =========================================================
+document.querySelectorAll(".mobile-menu li:not(.has-submenu) > a").forEach((link) => {
+  link.addEventListener("click", () => {
+    // Only close if it's an actual navigation link (not #)
+    if (link.getAttribute("href") && link.getAttribute("href") !== "#") {
+      closeOffcanvas();
+    }
+  });
+});
+
+// =========================================================
+// OPTIONAL: Active page highlighting
+// =========================================================
+const currentPage = window.location.pathname.split("/").pop() || "index.html";
+document.querySelectorAll(".desktop-menu a, .mobile-menu a").forEach((link) => {
+  if (link.getAttribute("href") === currentPage) {
+    link.classList.add("active");
+  }
+});
